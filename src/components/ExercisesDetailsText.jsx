@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 
 export default function ExercisesDetailsText({exercisesName, exercisesForce, exercisesLevel, exercisesCategory,
     exercisesInstructions }) {

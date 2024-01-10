@@ -1,4 +1,3 @@
-import React from 'react'
 import { apiBaseUrl } from '../config'
 import '../ExerciseDetails.css'
 export default function ExercisesDetailsImages({ images }) {
