@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import '../App.css'
+import '../Index.css'
+import ExerciseCard from '../components/ExerciseCard'
+import SearchExercises from '../components/SearchExercises'
 
 const AllExercises = () => {
   const [exercises, setExercises] = useState([])
+  const [searchExercises, setSearchExercises] = useState('')
 
   const fetchExercises = async () => {
     try {
@@ -23,23 +27,35 @@ const AllExercises = () => {
     fetchExercises()
   }, [])
 
+  // Filter exercises based on name and level criteria
+
   return (
     <>
       <h1>All exercises</h1>
-      {exercises.map(exercise => (
-        <Link key={exercise._id}>
-          <p>{exercise.name}</p>
-          <p>{exercise.category}</p>
-          {exercise.images && exercise.images.length > 0 && (
-            <div>
-              {exercise.images.map((image, index) => (
-                <img key={index} src={exercise.images} alt={`Exercise ${image} - Image ${index}`} />
-              ))}
-            </div>
-          )}
-        </Link>
-      ))}
+      <div>
+        <SearchExercises
+          searchExercises={searchExercises}
+          setSearchExercises={setSearchExercises}
+        />
+      </div>
+
+      <div className='exercise-container'>
+        {exercises.length === 0 ||
+        (exercises.filter(filteredExercise =>
+          filteredExercise.name.toLowerCase().includes(searchExercises.toLowerCase())
+        ).length === 0 &&
+          searchExercises.length > 0) ? (
+          <p>No exercises found</p>
+        ) : (
+          exercises
+            .filter(filteredExercise =>
+              filteredExercise.name.toLowerCase().includes(searchExercises.toLowerCase())
+            )
+            .map(exercise => <ExerciseCard key={exercise._id} exercise={exercise} />)
+        )}
+      </div>
     </>
   )
 }
+
 export default AllExercises
