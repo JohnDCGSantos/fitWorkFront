@@ -40,3 +40,58 @@
 .read-the-docs {
   color: #888;
 }
+.nav{
+  display: flex;
+  align-items: center;
+}
+
+.nav img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.navBar {
+  padding:5px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.exercise-card {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  width: 200px; /* Set a fixed width for the card */
+  height: 300px; /* Set a fixed height for the card */
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+  height: 50px; /* Set a fixed height for the title */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  height: calc(100% - 50px); /* Adjust the height to leave space for the title */
+}
+
+.exerciseImages {
+  max-width: 100%;
+  max-height: 120px;
+  margin-bottom: 5px;
+}
+
+.exercise-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 5px
+}
