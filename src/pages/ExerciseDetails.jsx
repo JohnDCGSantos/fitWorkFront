@@ -5,12 +5,12 @@ import { apiBaseUrl } from '../config';
 import '../ExerciseDetails.css'
 import ExercisesDetailsText from '../components/ExercisesDetailsText';
 import ExercisesDetailsImages from '../components/ExercisesDetailsImages';
-export default function ExerciseDetails() {
+export default function ExerciseDetails({ exercise }) {
     const { exerciseId } = useParams()
     const [exercises, setExercises] = useState([])
     const [isLoading, setIsLoading] = useState(false);
   
-    useEffect(() => { 
+     useEffect(() => { 
         fetchExerciseData()
       }, [exerciseId])
       
@@ -27,7 +27,7 @@ export default function ExerciseDetails() {
         console.log(error)
     }
     setIsLoading(false)
-    }
+    } 
 
   return (
     <div className='exerciseDetailsPage-container'>

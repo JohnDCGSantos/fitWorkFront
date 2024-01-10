@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 const ExerciseCard = ({ exercise }) => (
   <div className='exercise-card'>
-    <Link to={`/exercise/${exercise._id}`}>
+    <Link to={`/exercises/${exercise._id}`}>
       <div className='card-title'>{exercise.name}</div>
       <div className='card-images'>
         {exercise.images.map((image, index) => (

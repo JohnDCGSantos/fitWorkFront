@@ -3,6 +3,7 @@ import '../App.css'
 import '../Index.css'
 import ExerciseCard from '../components/ExerciseCard'
 import SearchExercises from '../components/SearchExercises'
+import ExerciseDetails from './ExerciseDetails'
 
 const AllExercises = () => {
   const [exercises, setExercises] = useState([])
@@ -53,6 +54,7 @@ const AllExercises = () => {
             )
             .map(exercise => <ExerciseCard key={exercise._id} exercise={exercise} />)
         )}
+        
       </div>
     </>
   )
