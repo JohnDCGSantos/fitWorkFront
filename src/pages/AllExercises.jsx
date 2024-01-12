@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import '../App.css'
 import '../Index.css'
-import ExerciseCard from '../components/ExerciseCard'
-import SearchExercises from '../components/SearchExercises'
-import ExerciseDetails from './ExerciseDetails'
+import SearchInput from '../components/SearchInput'
+import ExerciseList from '../components/ExerciseList'
 
 const AllExercises = () => {
   const [exercises, setExercises] = useState([])
   const [searchExercises, setSearchExercises] = useState('')
+  const [sortCriteria, setSortCriteria] = useState('name')
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchExercises = async () => {
     try {
@@ -22,40 +23,51 @@ const AllExercises = () => {
     } catch (error) {
       console.error('Error fetching exercises:', error)
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
     fetchExercises()
   }, [])
 
-  // Filter exercises based on name and level criteria
+  const handleSortChange = event => {
+    setSortCriteria(event.target.value)
+  }
+
+  const filteredExercises = exercises.filter(exercise =>
+    exercise.name.toLowerCase().includes(searchExercises.toLowerCase())
+  )
 
   return (
     <>
-      <h1>All exercises</h1>
-      <div>
-        <SearchExercises
-          searchExercises={searchExercises}
-          setSearchExercises={setSearchExercises}
-        />
+      <h1>Exercises</h1>
+      <div className='searchSort'>
+        <SearchInput searchExercises={searchExercises} setSearchExercises={setSearchExercises} />
+        <div className='sort'>
+          <label className='sortLabel' htmlFor='sortCriteria'>
+            Sort by:
+          </label>
+          <select
+            className='sortSearch'
+            id='sortCriteria'
+            onChange={handleSortChange}
+            value={sortCriteria}
+          >
+            <option value='name'>Name</option>
+            <option value='force'>Force</option>
+            <option value='level'>Level</option>
+            <option value='mechanic'>Mechanic</option>
+            <option value='equipment'>Equipment</option>
+            <option value='primaryMuscles'>Primary Muscles</option>
+            <option value='category'>Category</option>
+          </select>
+        </div>
       </div>
-
-      <div className='exercise-container'>
-        {exercises.length === 0 ||
-        (exercises.filter(filteredExercise =>
-          filteredExercise.name.toLowerCase().includes(searchExercises.toLowerCase())
-        ).length === 0 &&
-          searchExercises.length > 0) ? (
-          <p>No exercises found</p>
-        ) : (
-          exercises
-            .filter(filteredExercise =>
-              filteredExercise.name.toLowerCase().includes(searchExercises.toLowerCase())
-            )
-            .map(exercise => <ExerciseCard key={exercise._id} exercise={exercise} />)
-        )}
-        
-      </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <ExerciseList exercises={filteredExercises} sortCriteria={sortCriteria} />
+      )}
     </>
   )
 }

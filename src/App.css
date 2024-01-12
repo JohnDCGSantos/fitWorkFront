@@ -57,30 +57,95 @@
   justify-content: space-around;
   list-style: none;
 }
+.index-container{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin:5px;
+  padding: 10px;
 
+}
+.index-item{
+  margin:5px ;
+}
+.group-container{
+  height:50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:5px;
+  padding: 10px;
+
+}
+.titleIndex{
+height:100%
+}
+.index-button{
+  width: 120px;
+}
+.searchSort{
+  display: flex;
+  flex-direction: column;
+}
+.search{
+  display: flex;
+  justify-content: center
+}
+.inputSearch{
+  width:142px
+}
+.sortSearch{
+  width:150px;
+  margin-bottom: 10px;
+}
+.scrollToTopButton {
+  position: fixed;
+  bottom: 50%; 
+  right: 5px; 
+  
+ 
+}
+.scrollTop{
+  background-color: rgba(0,0,0,0.5);
+width: 80px;
+}
+
+.searchLabel{
+  width:150px
+}
+.sortLabel{
+  width:150px
+}
+.sort{
+  display: flex;
+  justify-content: center;
+  margin-top:5px
+}
 .exercise-card {
   border: 1px solid #ccc;
   margin: 10px;
   padding: 10px;
-  width: 200px; /* Set a fixed width for the card */
-  height: 300px; /* Set a fixed height for the card */
+  width: 200px; 
+  height: 300px; 
+  display: flex ;
+  flex-direction: column;
 }
 
 .card-title {
   font-size: 16px;
   font-weight: bold;
-  height: 50px; /* Set a fixed height for the title */
+  height: 20px; 
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .card-images {
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  height: calc(100% - 50px); /* Adjust the height to leave space for the title */
 }
 
 .exerciseImages {
@@ -92,6 +157,7 @@
 .exercise-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   margin: 5px
 }
+
